@@ -1,0 +1,91 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class = "col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+  <form (ngSubmit) = "onSubmit(reg)" #reg = "ngForm">
+    <div>
+      <div class = "form-group">
+        <label for = "studNumber">Student Number</label>
+        <input type="text" id="studNumber" class="form-control" 
+        ngModel name="studNumber" required pattern = "/^[0-9]+$/" 
+        #studNumber = "ngModel">
+      </div>
+      <div *ngIf = "studNumber.invalid" && "studNumber.touched">
+        Invalid ! !
+      </div>
+      
+      <div class = "form-group">
+        <label for = "studFname">Student First Name</label>
+        <input type="text" id="studFname" class="form-control" 
+        ngModel name="studFname" required pattern = "/^[A-z]+$/" 
+        #studFname = "ngModel">
+      </div>
+      <div *ngIf = "studFname.invalid" && "studFname.touched">
+        Invalid ! !
+      </div>
+      
+      <div class = "form-group">
+        <label for = "studLname">Student Last Name</label>
+        <input type="text" id="studLname" class="form-control" 
+        ngModel name="studLname" required pattern = "/^[A-z]+$/" 
+        #studLname = "ngModel">
+      </div>
+      <div *ngIf = "studLname.invalid" && "studLname.touched">
+        Invalid ! !
+      </div>
+      
+      <div class = "form-group">
+        <label for = "studProg">Student Program</label>
+        <input type="text" id="studProg" class="form-control" 
+        ngModel name="studProg" required pattern = "/^[A-z]+$/" 
+        #studProg = "ngModel">
+      </div>
+      <div *ngIf = "studProg.invalid" && "studProg.touched">
+        Invalid ! !
+      </div>
+      
+      <div class = "form-group">
+        <label for = "studYr">Student Year</label>
+        <input type="text" id="studYr" class="form-control" 
+        ngModel name="studYr" required pattern = "/^[0-9]+$/" 
+        #studYr = "ngModel">
+      </div>
+      <div *ngIf = "studYr.invalid" && "studYr.touched">
+        Invalid ! !
+      </div>
+    </div>
+    
+    <div id="options">
+      <button id="addStudents" (click)="addStudentEntry()">
+        Add Student
+      </button>
+      <button id="listStudents" (click)="listStudentEntry()">
+        List Students
+      </button>
+    </div>
+  </form>
+</div>
+
+<div>
+  {{ messages }}
+</div>
+<div *ngIf="printing">
+  <table>
+    <thead>
+      <tr>
+        <th>Student Number</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Student Program</th>
+        <th>Student Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let studentRecord of studentCollection">
+        <td>{{ studentRecord.studNumber }}</td>
+        <td>{{ studentRecord.studFirstName }}</td>
+        <td>{{ studentRecord.studLastName }}</td>
+        <td>{{ studentRecord.studProgram }}</td>
+        <td>{{ studentRecord.studYear }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
